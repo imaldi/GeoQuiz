@@ -3,12 +3,14 @@ package com.aim2u.geoquiz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity {
+    private static final String TAG = "QuizActivity";
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mNextButton;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_main);
 
         mQuestionTextView = findViewById(R.id.txtQuestion);
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Toast toast = Toast.makeText(MainActivity.this, R.string.correct_toast,
+                /*Toast toast = Toast.makeText(QuizActivity.this, R.string.correct_toast,
                         Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP,0,0);
                 toast.show();
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         mFalseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Toast toast = Toast.makeText(MainActivity.this, R.string.incorrect_toast,
+                /*Toast toast = Toast.makeText(QuizActivity.this, R.string.incorrect_toast,
                         Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP,0,0);
                 toast.show();
@@ -94,6 +97,30 @@ public class MainActivity extends AppCompatActivity {
     private void updateQuestion() {
         int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQuestionTextView.setText(question);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume() called");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart() called");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG,"onStop() called");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy() called");
     }
 
     private void checkAnswer(boolean userPressedTrue){
