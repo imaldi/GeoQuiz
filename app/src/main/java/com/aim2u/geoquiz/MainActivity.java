@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mCurrentIndex = (mCurrentIndex+1) % mQuestionBank.length;
-                updateQuestion()
+                updateQuestion();
             }
         });
         //int question = mQuestionBank[mCurrentIndex].getTextResId();
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkAnswer(boolean userPressedTrue){
         boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
 
-        int messageResId = 0;
+        int messageResId;
 
         if(userPressedTrue == answerIsTrue){
             messageResId = R.string.correct_toast;
