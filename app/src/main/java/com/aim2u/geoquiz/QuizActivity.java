@@ -12,7 +12,6 @@ import android.widget.Toast;
 public class QuizActivity extends AppCompatActivity {
     private static final String TAG = "QuizActivity";
     private static final String KEY_INDEX = "index";
-    //private int userPoint = 0;
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mNextButton;
@@ -62,7 +61,6 @@ public class QuizActivity extends AppCompatActivity {
                 toast.show();
                 */
                 checkAnswer(true);
-                setButton(false);
             }
         });
         mFalseButton = findViewById(R.id.false_button);
@@ -75,7 +73,6 @@ public class QuizActivity extends AppCompatActivity {
                 toast.show();
                 */
                 checkAnswer(false);
-                setButton(false);
             }
         });
 
@@ -88,7 +85,6 @@ public class QuizActivity extends AppCompatActivity {
                 //mQuestionTextView.setText(question);
                 //Encapsulating with updateQuesstion();
                 updateQuestion();
-                setButton(true);
             }
         });
 
@@ -98,21 +94,9 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
                 updateQuestion();
-                setButton(false);
             }
         });
         updateQuestion();
-
-        /*
-        if(mCurrentIndex == 0){
-            mPrevButton.setEnabled(false);
-        } else if(mCurrentIndex == (mQuestionBank.length -1)){
-            mNextButton.setEnabled(false);
-            Toast.makeText(this, "you get " + userPoint + " points", Toast.LENGTH_SHORT).show();
-        } else {
-            mPrevButton.setEnabled(true);
-            mNextButton.setEnabled(true);
-        }*/
     }
 
     private void updateQuestion() {
@@ -151,11 +135,6 @@ public class QuizActivity extends AppCompatActivity {
         Log.d(TAG, "onDestroy() called");
     }
 
-    private void setButton(Boolean isEnabled){
-        mTrueButton.setEnabled(isEnabled);
-        mFalseButton.setEnabled(isEnabled);
-    }
-
     private void checkAnswer(boolean userPressedTrue){
         boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
 
@@ -163,7 +142,6 @@ public class QuizActivity extends AppCompatActivity {
 
         if(userPressedTrue == answerIsTrue){
             messageResId = R.string.correct_toast;
-            //userPoint++;
         } else {
             messageResId = R.string.incorrect_toast;
         }
